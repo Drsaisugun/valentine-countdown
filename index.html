@@ -117,16 +117,6 @@
             "I love you simply because you are YOU. ❤️"
         ];
 
-            let messageList = "";
-        for (let i = 0; i < dayNumber; i++) {
-            messageList += `<p>${messages[i]}</p>`;
-        }
-
-        document.getElementById("messages-container").innerHTML = messageList;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
         
         const today = new Date().getDate();
         const container = document.getElementById("reasons");
