@@ -70,5 +70,54 @@
             container.appendChild(div);
         }
     </script>
+    <style>
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .countdown-box {
+            background: #ffd1dc;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d6336c;
+            text-align: center;
+            width: 70px;
+        }
+        .label {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+    
+    <div class="countdown-container">
+        <div class="countdown-box"><span id="days"></span><br><span class="label">Days</span></div>
+        <div class="countdown-box"><span id="hours"></span><br><span class="label">Hours</span></div>
+        <div class="countdown-box"><span id="minutes"></span><br><span class="label">Minutes</span></div>
+        <div class="countdown-box"><span id="seconds"></span><br><span class="label">Seconds</span></div>
+    </div>
+    
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const indiaTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+            const target = new Date("Feb 14, 2025 00:00:00").getTime();
+            const diff = target - indiaTime.getTime();
+            
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            } else {
+                document.querySelector(".countdown-container").innerHTML = "<h2>Happy Valentine's Day! ❤️</h2>";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
