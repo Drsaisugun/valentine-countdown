@@ -83,6 +83,23 @@
     </div>
 
     <script>
+        function updateCountdown() {
+        const now = new Date();
+        const indiaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+        const start = new Date("Feb 1, 2025 00:00:00").getTime();
+        const target = new Date("Feb 14, 2025 00:00:00").getTime();
+        const current = indiaTime.getTime();
+            let dayNumber = Math.floor((current - start) / (1000 * 60 * 60 * 24)) + 1;
+
+        if (current >= start && current < target) {
+            document.getElementById("day-number").innerText = `Day ${dayNumber}`;
+            displayMessages(dayNumber);
+        } else if (current >= target) {
+            document.getElementById("day-number").innerText = "Happy Valentine's Day! ❤️";
+            displayMessages(14);
+        }
+    }
+        function displayMessages(dayNumber) {
         const reasons = [
             "I love you because you make even the smallest moments special. For example, whenever I was at my lowest point your simple text brings smile on my face and light up my day not like the candel you said.",
             "I love how you understand me even when I don’t say a word.",
@@ -99,6 +116,17 @@
             "I love how I can be my true self with you.",
             "I love you simply because you are YOU. ❤️"
         ];
+
+            let messageList = "";
+        for (let i = 0; i < dayNumber; i++) {
+            messageList += `<p>${messages[i]}</p>`;
+        }
+
+        document.getElementById("messages-container").innerHTML = messageList;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
         
         const today = new Date().getDate();
         const container = document.getElementById("reasons");
