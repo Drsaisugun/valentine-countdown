@@ -54,25 +54,24 @@
             font-size: 14px;
             color: #555;
         }
-          .bordered-image {
-        border: 2px solid #ff0000; 
-        border-radius: 8px;
-        width: 80%; 
-        max-width: 500px; 
-        height: auto;
-    }
+        .bordered-image {
+            border: 2px solid #ff0000; 
+            border-radius: 8px;
+            width: 80%; 
+            max-width: 500px; 
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>14 Reasons Why I Love You ❤️</h1>
+        <h2 id="day-number"></h2>
         <div id="reasons"></div>
     </div>
 
     <div class="image-container">
-      <img src="DSC_0340.JPG" 
-     alt="Valentine Image" class="bordered-image">
-
+        <img src="DSC_0340.JPG" alt="Valentine Image" class="bordered-image">
     </div>
 
     <div class="countdown-container">
@@ -83,57 +82,58 @@
     </div>
 
     <script>
-        function updateCountdown() {
-        const now = new Date();
-        const indiaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
-        const start = new Date("Feb 1, 2025 00:00:00").getTime();
-        const target = new Date("Feb 14, 2025 00:00:00").getTime();
-        const current = indiaTime.getTime();
+        function updateContent() {
+            const now = new Date();
+            const indiaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+            const start = new Date("Feb 1, 2025 00:00:00").getTime();
+            const target = new Date("Feb 14, 2025 00:00:00").getTime();
+            const current = indiaTime.getTime();
+
             let dayNumber = Math.floor((current - start) / (1000 * 60 * 60 * 24)) + 1;
 
-        if (current >= start && current < target) {
-            document.getElementById("day-number").innerText = `Day ${dayNumber}`;
-            displayMessages(dayNumber);
-        } else if (current >= target) {
-            document.getElementById("day-number").innerText = "Happy Valentine's Day! ❤️";
-            displayMessages(14);
+            if (current >= start && current < target) {
+                document.getElementById("day-number").innerText = `Day ${dayNumber}`;
+                displayMessages(dayNumber);
+            } else if (current >= target) {
+                document.getElementById("day-number").innerText = "Happy Valentine's Day! ❤️";
+                displayMessages(14);
+            }
+
+            updateCountdown();
         }
-    }
+
         function displayMessages(dayNumber) {
-        const reasons = [
-            "I love you because you make even the smallest moments special. For example, whenever I was at my lowest point your simple text brings smile on my face and light up my day not like the candel you said.",
-            "I love how you understand me even when I don’t say a word.",
-            "Your laugh is my favorite sound in the world.",
-            "I love how you support and believe in me, no matter what.",
-            "I love the way you challenge me to be a better person.",
-            "You make distance feel small with your love and warmth.",
-            "I love how we can talk about anything and everything.",
-            "Your kindness and care make my world brighter.",
-            "I love the little things you do that show you care.",
-            "I love how we can be silly together and still feel so connected.",
-            "I admire your strength, intelligence, and the way you handle things.",
-            "You make me feel loved even from miles away.",
-            "I love how I can be my true self with you.",
-            "I love you simply because you are YOU. ❤️"
-        ];
+            const reasons = [
+                "I love you because you make even the smallest moments special. For example, whenever I was at my lowest point your simple text brings smile on my face and light up my day not like the candle you said.",
+                "I love how you understand me even when I don’t say a word.",
+                "Your laugh is my favorite sound in the world.",
+                "I love how you support and believe in me, no matter what.",
+                "I love the way you challenge me to be a better person.",
+                "You make distance feel small with your love and warmth.",
+                "I love how we can talk about anything and everything.",
+                "Your kindness and care make my world brighter.",
+                "I love the little things you do that show you care.",
+                "I love how we can be silly together and still feel so connected.",
+                "I admire your strength, intelligence, and the way you handle things.",
+                "You make me feel loved even from miles away.",
+                "I love how I can be my true self with you.",
+                "I love you simply because you are YOU. ❤️"
+            ];
 
-        
-        const today = new Date().getDate();
-        const container = document.getElementById("reasons");
+            let messageList = "";
+            for (let i = 0; i < dayNumber; i++) {
+                messageList += `<div class='reason'><p class='date'>Day ${i + 1}</p><p>${reasons[i]}</p></div>`;
+            }
 
-        for (let i = 0; i < today && i < reasons.length; i++) {
-            let div = document.createElement("div");
-            div.className = "reason";
-            div.innerHTML = `<p class='date'>Day ${i + 1}</p><p>${reasons[i]}</p>`;
-            container.appendChild(div);
+            document.getElementById("reasons").innerHTML = messageList;
         }
 
         function updateCountdown() {
             const now = new Date();
-            const indiaTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+            const indiaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
             const target = new Date("Feb 14, 2025 00:00:00").getTime();
             const diff = target - indiaTime.getTime();
-            
+
             if (diff > 0) {
                 document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
                 document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -143,8 +143,9 @@
                 document.querySelector(".countdown-container").innerHTML = "<h2>Happy Valentine's Day! ❤️</h2>";
             }
         }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+
+        setInterval(updateContent, 1000);
+        updateContent();
     </script>
     
 </body>
