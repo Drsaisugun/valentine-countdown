@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14 Reasons Why I Love You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d6336c;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+        }
+        .reason {
+            font-size: 18px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #ffd1dc;
+            border-radius: 8px;
+        }
+        .date {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>14 Reasons Why I Love You ❤️</h1>
+        <div id="reasons"></div>
+    </div>
+
+    <script>
+        const reasons = [
+            "I love you because you make even the smallest moments special.",
+            "I love how you understand me even when I don’t say a word.",
+            "Your laugh is my favorite sound in the world.",
+            "I love how you support and believe in me, no matter what.",
+            "I love the way you challenge me to be a better person.",
+            "You make distance feel small with your love and warmth.",
+            "I love how we can talk about anything and everything.",
+            "Your kindness and care make my world brighter.",
+            "I love the little things you do that show you care.",
+            "I love how we can be silly together and still feel so connected.",
+            "I admire your strength, intelligence, and the way you handle things.",
+            "You make me feel loved even from miles away.",
+            "I love how I can be my true self with you.",
+            "I love you simply because you are YOU. ❤️"
+        ];
+        
+        const today = new Date().getDate();
+        const container = document.getElementById("reasons");
+
+        for (let i = 0; i < today && i < reasons.length; i++) {
+            let div = document.createElement("div");
+            div.className = "reason";
+            div.innerHTML = `<p class='date'>Day ${i + 1}</p><p>${reasons[i]}</p>`;
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>
